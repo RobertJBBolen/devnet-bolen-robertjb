@@ -37,7 +37,7 @@ def view_movies(movie_list):
     movies_count = len(movie_list)
     if movies_count >= 1:
         print("=== All Movies ===")
-        for movie in movie_list:
+        for movie in [movie_list]:
             print(movie)
     # handle empty list
     elif movies_count == 0:
@@ -50,7 +50,7 @@ def count_watched_unwatched(movie_list):
     Watched = 0
     Unwatched = 0
     for movie in movie_list:
-        movies = movie.split(" - ")
+        movies = movie.split(" - "), movie.lower()
     # count Watched vs Unwatched
         if movies == "watched":
             Watched =+ 1
@@ -58,6 +58,7 @@ def count_watched_unwatched(movie_list):
             Unwatched =+ 1
         else:
             print("No movies in the collection")
+            break
 
     # return both counts
     count = f"Watched: {Watched}\nUnwatched: {Unwatched}"
