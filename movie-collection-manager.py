@@ -7,7 +7,6 @@ movies = []
 
 
 def display_menu():
-    while True:
         # print the menu
         menu = ["1. Add a Movie", "2. View all movies", "3. Count watched vs unwatched", "4. Find a movie", "5. Exit"]
 
@@ -16,13 +15,8 @@ def display_menu():
             print(choice)
         # return the user's choice
         user_input = int(input("Choose an Option: "))
-
-        if user_input == 1:
-            add_movie(movies)
-        elif user_input == 5:
-            break   
+        return user_input
         
-
 
 def add_movie(movie_list):
     # ask for title, director, and status
@@ -38,19 +32,36 @@ def add_movie(movie_list):
     movie_list = movie_info
     return movie_list 
 
-
-
 def view_movies(movie_list):
     # loop through and print every movie
+    movies_count = len(movie_list)
+    if movies_count >= 1:
+        print("=== All Movies ===")
+        for movie in movie_list:
+            print(movie)
     # handle empty list
-    pass
+    elif movies_count == 0:
+        print("No movies in the collection")
+         
 
 
 def count_watched_unwatched(movie_list):
     # loop through the list
+    Watched = 0
+    Unwatched = 0
+    for movie in movie_list:
+        movies = movie.split(" - ")
     # count Watched vs Unwatched
+        if movies == "watched":
+            Watched =+ 1
+        elif movies == "unwatched":
+            Unwatched =+ 1
+        else:
+            print("No movies in the collection")
+
     # return both counts
-    pass
+    count = f"Watched: {Watched}\nUnwatched: {Unwatched}"
+    return count
 
 
 def find_movie(movie_list):
@@ -66,5 +77,16 @@ def main():
     # call the appropriate function based on the user's choice
     pass
 
-
-display_menu()
+while True:
+    user_input = display_menu()
+    if user_input == 1:
+        movies = add_movie(movies)
+    elif user_input == 2:
+        movies = view_movies(movies)
+    elif user_input == 3:
+        count = count_watched_unwatched(movies)
+        print(count)
+    elif user_input == 5:
+        break  
+    else:
+        print("Invalid Choice!")
