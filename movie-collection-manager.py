@@ -29,7 +29,7 @@ def add_movie(movie_list):
     print(f"{movie_info} movie added successfully.")
 
     # add it to the list
-    movie_list = movie_info
+    movie_list.append(movie_info)
     return movie_list 
 
 def view_movies(movie_list):
@@ -38,7 +38,7 @@ def view_movies(movie_list):
     if movies_count >= 1:
         print("=== All Movies ===")
         for movie in [movie_list]:
-            print(movie)
+            print("\n".join(movie))
     # handle empty list
     elif movies_count == 0:
         print("No movies in the collection")
@@ -49,16 +49,15 @@ def count_watched_unwatched(movie_list):
     # loop through the list
     Watched = 0
     Unwatched = 0
-    for movie in movie_list:
-        movies = movie.split(" - "), movie.lower()
+    for movie in [movie_list]:
+        movies = "".join(movie)
+        split = movies.split(" - ")
+        print(movies)
     # count Watched vs Unwatched
-        if movies == "watched":
+        if "watched" in split:
             Watched =+ 1
-        elif movies == "unwatched":
+        elif "unwatched" in split:
             Unwatched =+ 1
-        else:
-            print("No movies in the collection")
-            break
 
     # return both counts
     count = f"Watched: {Watched}\nUnwatched: {Unwatched}"
@@ -73,21 +72,22 @@ def find_movie(movie_list):
     pass
 
 
-def main():
+def main(movies):
     # create the main menu loop
+    while True:
+        user_input = display_menu()
+        if user_input == 1:
+            movies = add_movie(movies)
+        elif user_input == 2:
+            movies = view_movies(movies)
+        elif user_input == 3:
+            count = count_watched_unwatched(movies)
+            print(count)
+        elif user_input == 5:
+            break  
+        else:
+            print("Invalid Choice!")
     # call the appropriate function based on the user's choice
-    pass
 
-while True:
-    user_input = display_menu()
-    if user_input == 1:
-        movies = add_movie(movies)
-    elif user_input == 2:
-        movies = view_movies(movies)
-    elif user_input == 3:
-        count = count_watched_unwatched(movies)
-        print(count)
-    elif user_input == 5:
-        break  
-    else:
-        print("Invalid Choice!")
+main(movies)
+
