@@ -13,4 +13,7 @@ if response.status_code == 200:
     data = response.json()
 
     name = data["name"]
-    print(name)
+    height = data["height"]
+    weight = data["weight"]
+    ability = data["abilities"][0]["ability"]["name"]
+    print(f"Testing {name}, {height}, {weight}, {ability}")
