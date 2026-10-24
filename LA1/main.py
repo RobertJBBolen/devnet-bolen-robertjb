@@ -33,3 +33,6 @@ if response.status_code == 200:
 
     else:
         print(f"\nGame over! The correct answer was {name.capitalize()}.")
+
+else:
+    print(f"Error: Received status code {response.status_code} from PokeAPI.")
