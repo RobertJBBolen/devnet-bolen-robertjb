@@ -15,5 +15,9 @@ if response.status_code == 200:
     name = data["name"]
     height = data["height"]
     weight = data["weight"]
-    ability = data["abilities"][0]["ability"]["name"]
-    print(f"Testing {name}, {height}, {weight}, {ability}")
+    ability = data["abilities"][random.randint(0,1)]["ability"]["name"]
+
+    print("-----GUESS THAT POKEMON!!-----")
+    print(f"Pokemon's Height: {height}")
+    print(f"Pokemon's Weight: {weight}")
+    print(f"Pokemon's Ability: {ability}")
