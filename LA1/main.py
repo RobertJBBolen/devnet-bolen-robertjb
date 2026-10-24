@@ -2,6 +2,7 @@ import random
 import requests
 
 pokemon_pool = ["pikachu", "charizard", "bulbasaur", "squirtle", "eevee"]
+choices = ' || '.join(pokemon_pool)
 
 secret_name = random.choice(pokemon_pool)
 
@@ -21,17 +22,24 @@ if response.status_code == 200:
     print(f"Pokemon's Height: {height}")
     print(f"Pokemon's Weight: {weight}")
     print(f"Pokemon's Ability: {ability}")
-    print("-------------------------------")
-    print(f"CHOICES: {pokemon_pool}")
+    print("-"*30)
+    print(f"Choices: || {choices} ||")
+    print("-"*30)
 
     for attempt in range(3):
+        while True:
             guess = input("\nYour guess: ").lower().strip()
-            
-            if guess == name:
-                print("Congrats You guessed that pokemon!!")
+
+            if guess in pokemon_pool:
                 break
             else:
-                print("Wrong!!!")
+                print(f"{guess} is not in the choices! please pick another!!")
+
+        if guess == name:
+            print("Congrats You guessed that pokemon!!")
+            break
+        else:
+            print("Wrong!!!")
 
     else:
         print(f"\nGame over! The correct answer was {name.capitalize()}.")
