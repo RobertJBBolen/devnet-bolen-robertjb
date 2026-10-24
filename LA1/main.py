@@ -21,3 +21,15 @@ if response.status_code == 200:
     print(f"Pokemon's Height: {height}")
     print(f"Pokemon's Weight: {weight}")
     print(f"Pokemon's Ability: {ability}")
+
+    for attempt in range(3):
+            guess = input("\nYour guess: ").lower().strip()
+            
+            if guess == name:
+                print("Congrats You guessed that pokemon!!")
+                break
+            else:
+                print("Wrong!!!")
+
+    else:
+        print(f"\nGame over! The correct answer was {name.capitalize()}.")
