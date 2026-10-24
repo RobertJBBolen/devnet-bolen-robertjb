@@ -21,6 +21,8 @@ if response.status_code == 200:
     print(f"Pokemon's Height: {height}")
     print(f"Pokemon's Weight: {weight}")
     print(f"Pokemon's Ability: {ability}")
+    print("-------------------------------")
+    print(f"CHOICES: {pokemon_pool}")
 
     for attempt in range(3):
             guess = input("\nYour guess: ").lower().strip()
